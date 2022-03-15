@@ -1,1 +1,1 @@
-# StudentDuesManagement
+# Student Dues Management
