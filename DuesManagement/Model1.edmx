@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="mainModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=C:\Users\fatbj\source\repos\DuesManagement\DuesManagement\bin\Debug\main.db" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="adminId" />
+          </Key>
+          <Property Name="adminId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudentInfo">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentName" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="StudentSurname" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="StudentBirthday" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="StudentRegday" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="StudentTelno" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="StudentNot" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="StudentTC" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="StudentPaymentInfo">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="integer" />
+          <Property Name="Ocak" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Şubat" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Mart" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Nisan" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Mayıs" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Haziran" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Temmuz" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Ağustos" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Eylül" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Ekim" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Kasım" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Aralık" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <Association Name="FK_StudentPaymentInfo_0_0">
+          <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="0..1" />
+          <End Role="StudentPaymentInfo" Type="Self.StudentPaymentInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentInfo">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="StudentPaymentInfo">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mainModelStoreContainer">
+          <EntitySet Name="admin" EntityType="Self.admin" store:Type="Tables" />
+          <EntitySet Name="StudentInfo" EntityType="Self.StudentInfo" store:Type="Tables" />
+          <EntitySet Name="StudentPaymentInfo" EntityType="Self.StudentPaymentInfo" store:Type="Tables" />
+          <AssociationSet Name="FK_StudentPaymentInfo_0_0" Association="Self.FK_StudentPaymentInfo_0_0">
+            <End Role="StudentInfo" EntitySet="StudentInfo" />
+            <End Role="StudentPaymentInfo" EntitySet="StudentPaymentInfo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mainModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="adminId" />
+          </Key>
+          <Property Name="adminId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudentInfo">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StudentSurname" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StudentBirthday" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="StudentRegday" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="StudentTelno" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="StudentNot" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="StudentTC" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StudentPaymentInfo" Relationship="Self.FK_StudentPaymentInfo_0_0" FromRole="StudentInfo" ToRole="StudentPaymentInfo" />
+        </EntityType>
+        <EntityType Name="StudentPaymentInfo">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int64" />
+          <Property Name="Ocak" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Şubat" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Mart" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Nisan" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Mayıs" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Haziran" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Temmuz" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Ağustos" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Eylül" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Ekim" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Kasım" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Aralık" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StudentInfo" Relationship="Self.FK_StudentPaymentInfo_0_0" FromRole="StudentPaymentInfo" ToRole="StudentInfo" />
+        </EntityType>
+        <Association Name="FK_StudentPaymentInfo_0_0">
+          <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="0..1" />
+          <End Role="StudentPaymentInfo" Type="Self.StudentPaymentInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentInfo">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="StudentPaymentInfo">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mainEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admin" EntityType="Self.admin" />
+          <EntitySet Name="StudentInfo" EntityType="Self.StudentInfo" />
+          <EntitySet Name="StudentPaymentInfo" EntityType="Self.StudentPaymentInfo" />
+          <AssociationSet Name="FK_StudentPaymentInfo_0_0" Association="Self.FK_StudentPaymentInfo_0_0">
+            <End Role="StudentInfo" EntitySet="StudentInfo" />
+            <End Role="StudentPaymentInfo" EntitySet="StudentPaymentInfo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mainModelStoreContainer" CdmEntityContainer="mainEntities1">
+          <EntitySetMapping Name="admin">
+            <EntityTypeMapping TypeName="mainModel.admin">
+              <MappingFragment StoreEntitySet="admin">
+                <ScalarProperty Name="adminId" ColumnName="adminId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentInfo">
+            <EntityTypeMapping TypeName="mainModel.StudentInfo">
+              <MappingFragment StoreEntitySet="StudentInfo">
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="StudentSurname" ColumnName="StudentSurname" />
+                <ScalarProperty Name="StudentBirthday" ColumnName="StudentBirthday" />
+                <ScalarProperty Name="StudentRegday" ColumnName="StudentRegday" />
+                <ScalarProperty Name="StudentTelno" ColumnName="StudentTelno" />
+                <ScalarProperty Name="StudentNot" ColumnName="StudentNot" />
+                <ScalarProperty Name="StudentTC" ColumnName="StudentTC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentPaymentInfo">
+            <EntityTypeMapping TypeName="mainModel.StudentPaymentInfo">
+              <MappingFragment StoreEntitySet="StudentPaymentInfo">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="Ocak" ColumnName="Ocak" />
+                <ScalarProperty Name="Şubat" ColumnName="Şubat" />
+                <ScalarProperty Name="Mart" ColumnName="Mart" />
+                <ScalarProperty Name="Nisan" ColumnName="Nisan" />
+                <ScalarProperty Name="Mayıs" ColumnName="Mayıs" />
+                <ScalarProperty Name="Haziran" ColumnName="Haziran" />
+                <ScalarProperty Name="Temmuz" ColumnName="Temmuz" />
+                <ScalarProperty Name="Ağustos" ColumnName="Ağustos" />
+                <ScalarProperty Name="Eylül" ColumnName="Eylül" />
+                <ScalarProperty Name="Ekim" ColumnName="Ekim" />
+                <ScalarProperty Name="Kasım" ColumnName="Kasım" />
+                <ScalarProperty Name="Aralık" ColumnName="Aralık" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
