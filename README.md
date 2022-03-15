@@ -1,1 +1,1 @@
-# Student Dues Management
+# Student Dues Management System
